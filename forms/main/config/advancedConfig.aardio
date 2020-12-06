@@ -34,9 +34,7 @@ import xray.pacServer;
 onPacUpdated = function(){
 	winform.editPacPort.text = xray.pacServer.getPort() || config.proxy.pacPort || 1083;
 	winform.editPacUrl.text = xray.pacServer.getUrl();
-	if(winform.checkLan.checked){
-		winform.editLanPacUrl.text = xray.pacServer.getUrl(true);
-	}
+	winform.editLanPacUrl.text = xray.pacServer.getUrl(true);
 	winform.editLanPacUrl.disabled = !winform.checkLan.checked;
 }
 
@@ -208,8 +206,8 @@ winform.editHttpPort.editBox.enablePopMenu(function(){
 	}
 } )
 
-winform.editPacUrl.setCueBannerText("当前未切换到PAC代理模式");
-winform.editLanPacUrl.setCueBannerText("当前未切换到PAC代理模式");
+winform.editPacUrl.setCueBannerText("当前未启用本机PAC代理");
+winform.editLanPacUrl.setCueBannerText("当前未启用局域网PAC代理");
 
 winform.checkLan.oncommand = function(id,event){
 	winform.editLanPacUrl.disabled = !winform.checkLan.checked
