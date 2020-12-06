@@ -1,5 +1,5 @@
 {
 updateUrl="https://raw.githubusercontent.com/winXray/winXray/master/release/update/";
-description="修正允许局域网连接始终显示勾选。";
+description="兼容更多分享订阅格式，允许自定时检测服务器时间间隔，添加本地ping测试工具，修正SSH客户端闪退。";
 outputDir="/release/update/"
 }

@@ -290,6 +290,23 @@ frmXray.onDestroy = function(){
 	xray.pacServer.stop();
 }
 
+var pingThread = function( ip,frmXray ) {
+    import icmp.ping; 
+    var ping = icmp.ping(); 
+    
+    for(i=1;4;1){
+        if( ping.perform(ip) ){
+             frmXray.edit.print(ip,string.format( "Reply from %s: bytes=%d time=%dms TTL=%d"
+                , ping.ip , #ping.requestData  , ping.echoReply.roundTripTime , ping.echoReply.options.ttl ) ); 
+        }  
+        else {
+        	frmXray.edit.print(ip,"Request timed out");
+        }
+        
+    }
+} 
+
+import xray.outbounds;
 frmXray.listview.onnotify = function(id,code,ptr){
 	select(code) {
 		case 0xFFFFFFF4/*_NM_CUSTOMDRAW*/ {
@@ -346,6 +363,11 @@ frmXray.listview.onnotify = function(id,code,ptr){
 					publish("outbounds.updateConfigJson");
 				});
 				
+				popmenu.add()
+				popmenu.add('立即更新所有订阅源',function(id){
+					xray.outbounds.updateSubscription();
+				});
+				
 				popmenu.popup(x,y,true);
 				return;
 			}
@@ -387,7 +409,9 @@ frmXray.listview.onnotify = function(id,code,ptr){
     						return;
     					}
 						import process;
-						process.execute(io._exepath,"/sshLogin root@" + config.proxy.outbounds[currentIdx].address);
+						process.execute(io._exepath,"/sshLogin root@" 
+							+ config.proxy.outbounds[currentIdx].address + ":" 
+							+ (config.proxy.outbounds[currentIdx].sshPort||22));
 					}
 				});
 				
@@ -422,6 +446,12 @@ frmXray.listview.onnotify = function(id,code,ptr){
 					}
 				});
 				popmenu.add();
+				
+				popmenu.add('本机 Ping 检测',function(id){
+					if(currentIdx){
+						thread.invoke(pingThread,config.proxy.outbounds[currentIdx].address,frmXray)
+					}
+				});
 				
 				popmenu.add('全球范围 Ping 检测',function(id){
 					if(currentIdx){
@@ -470,6 +500,13 @@ frmXray.listview.onnotify = function(id,code,ptr){
 					config.proxy.outbounds = ..table.array();
 					frmXray.listview.clear();
 					publish("outbounds.updateConfigJson");
+				}
+			});
+			
+			popmenu.add()
+			popmenu.add('立即更新所有订阅源',function(id){
+				if(currentIdx){
+					xray.outbounds.updateSubscription();
 				}
 			});
 			
@@ -575,7 +612,7 @@ frmXray.btnImportServerFromClipBd.oncommand = function(id,event){
 		return; 
 	}
 
-	frmXray.msgFrown('未导入服务器！ \r\n请先复制以下格式服务器分享链接：\r\n\r\nvmess:// 链接\r\nvless:// 链接\r\nss:// 链接\r\ntrojan:// 链接\r\ntrojan-go:// 链接\r\nhttp:// 或 https:// 订阅源！')
+	frmXray.msgFrown('未导入服务器！ \r\n请先复制一个或多个以下格式服务器分享链接：\r\n\r\nvmess:// 链接\r\nvless:// 链接\r\nss:// 链接\r\ntrojan:// 链接\r\ntrojan-go:// 链接\r\nhttp:// 或 https:// 通用订阅源！\r\n订阅源也可返回winXray格式的配置JSON。')
 }
 
 var testTimerId;
@@ -588,11 +625,12 @@ frmXray.chkAutoTest.oncommand = function(id,event){
 	if(!config.proxy.test) return;
 
 	testTimerId = frmXray.setInterval( 
-		15000,function(){
+		config.proxy.testInterval*1000,function(){
 			if( frmXray.autoTesting ) return;
 			frmXray.autoTesting = true;
 
 			activeOutbound(,,true);
+			return config.proxy.testInterval*1000;
 		} 
 	)
 }

@@ -15,8 +15,8 @@ vless://904da8f7-a5af-3c34-3f3d-c3b2ea59bde8@q.vulvpstech.xyz:443/?host=q.vulvps
 
 ![winXray](./screenshots/winXray.png)
 
-winXray支持批量导入 vless、vmess、ss、trojan …… 等格式的分享链接，  
-也可以导入订阅链接，以及 base 64、json …… 等不同格式的服务器配置。
+winXray支持批量导入 vless、vmess、ss、trojan、trojan-go …… 等格式的分享链接，  
+也可以导入通用订阅链接，以及 base 64、json …… 等不同格式的服务器配置。
 
 ![服务器配置](./screenshots/config.json.png)
 **小技巧: JSON里点击任意字段都会显示该字段的用法说明。**
@@ -28,3 +28,5 @@ winXray支持批量导入 vless、vmess、ss、trojan …… 等格式的分享�
 
 软件首次运行时会在当前目录查找 "./xray-core/xray.exe"   
 发行文件仅需要 "./winXray.exe"，可选带上 "./xray-core/" 目录（ 如果没有找到会自动到v2ray官网下载，不过没有代理服务器下载有时候非常慢 )。
+
+![端口配置](./screenshots/config.advanced.png)
