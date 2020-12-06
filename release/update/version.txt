@@ -1,0 +1,8 @@
+{
+    "description":"修正trojan分享链接导入后连接异常。",
+    "format":".lzma",
+    "main":"\\winXray.exe",
+    "updater":"\\winXray.exe",
+    "url":"https://raw.githubusercontent.com/winXray/winXray/master/release/update/",
+    "version":"1.3.05"
+}

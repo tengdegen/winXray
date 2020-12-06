@@ -1,0 +1,5 @@
+{
+updateUrl="https://raw.githubusercontent.com/winXray/winXray/master/release/update/";
+description="修正trojan分享链接导入后连接异常。";
+outputDir="/release/update/"
+}
