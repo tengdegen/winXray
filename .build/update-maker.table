@@ -1,5 +1,5 @@
 {
 updateUrl="https://raw.githubusercontent.com/winXray/winXray/master/release/update/";
-description="修正trojan分享链接导入后连接异常。";
+description="修正允许局域网连接始终显示勾选。";
 outputDir="/release/update/"
 }

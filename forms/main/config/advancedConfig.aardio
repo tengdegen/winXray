@@ -49,7 +49,7 @@ var onInboundsUpdated = function(){
 	var inbounds = ..config.core.default[["inbounds"]];
 	winform.editSocksPort.text = xray.core.socksProxyPort || inbounds[[1]][["port"]] || 1081;
 	winform.editHttpPort.text = xray.core.httpProxyPort || inbounds[[2]][["port"]] || 1082;
-	winform.checkLan.checked = inbounds[["inbounds"]][["listen"]] !== "127.0.0.1"
+	winform.checkLan.checked = inbounds[[1]][["listen"]] !== "127.0.0.1"
 }
 
 subscribe("config.core.changed",function(){
