@@ -19,13 +19,15 @@ elseif(_ARGV.sshInstall){
     		
         	prcs = process("ssh","-t " +_ARGV.sshInstall + ` "firewall-cmd --permanent --add-port=80/tcp;firewall-cmd --permanent --add-port=443/tcp;firewall-cmd --reload;iptables -A INPUT -p tcp --dport 80 -j ACCEPT;iptables -A INPUT -p tcp --dport 443 -j ACCEPT;wget -P /root -N --no-check-certificate ""https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh"" && chmod 700 /root/install.sh && /root/install.sh"`)
    			if(!prcs){
-   				console.log(!_WIN10_LATER?"此功能仅支持 Windows 10 系统":"系统未安装SSH工具")
+   				console.log(!_WIN10_LATER?"此功能仅支持 Windows 10 系统":"系统未安装SSH工具！");
    			}
    			else {
    				import process.job.limitKill;
    				prcs.assignToJobObject(process.job.limitKill);	
    				prcs.wait();
    			}
+   			
+   			console.pause();
     	}
 	)
 	
@@ -47,13 +49,15 @@ elseif(_ARGV.sshLogin){
     		
         	prcs = process("ssh","-t " +_ARGV.sshLogin + ``)
    			if(!prcs){
-   				console.log(!_WIN10_LATER?"此功能仅支持 Windows 10 系统":"系统未安装SSH工具")
+   				console.log(!_WIN10_LATER?"此功能仅支持 Windows 10 系统":"系统未安装SSH工具！");
    			}
    			else {
    				import process.job.limitKill;
    				prcs.assignToJobObject(process.job.limitKill);	
    				prcs.wait();
    			}
+   			
+   			console.pause();
     	}
 	)
 	
