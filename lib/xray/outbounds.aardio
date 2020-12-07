@@ -167,10 +167,10 @@ importFromString = function(str){
 	
 	var outbounds = ..table.array();
 	for(line in ..string.lines(str) ){
-		if(#outbounds>=100){
+		if(#outbounds>=300){
 			import win.dlg.message;
 			var msgDlg = win.dlg.message(..mainForm); 
-			var form = msgDlg.warn("导入的节点数目过多，已中止！")
+			var form = msgDlg.warn("导入的节点数目过多，已导入300个节点并中止操作！")
 		
 			return outbounds;
 		}

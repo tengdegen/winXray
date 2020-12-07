@@ -1,5 +1,5 @@
 {
 updateUrl="https://raw.githubusercontent.com/winXray/winXray/master/release/update/";
-description="兼容更多分享订阅格式，允许自定时检测服务器时间间隔，添加本地ping测试工具，修正SSH客户端闪退。";
+description="提升并发测试服务器数目上限，允许多选服务器并禁止自动连接，禁止自动连接的服务器灰色显示「禁止测速」，活动服务器绿色高亮显示";
 outputDir="/release/update/"
 }

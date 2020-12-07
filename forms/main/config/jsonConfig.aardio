@@ -401,7 +401,7 @@ winform.editOutbounds.enablePopMenu(function(){
 					winform.editOutbounds.selText = '"protocol":"vless";'
 				} 
 			};
-			{ "SSH端口:ssh";
+			{ "SSH管理端口:sshPort";
 				function(id){
 					winform.editOutbounds.selText = '"sshPort":22;'
 				} 
