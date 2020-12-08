@@ -1,5 +1,5 @@
 {
 updateUrl="https://raw.githubusercontent.com/winXray/winXray/master/release/update/";
-description="提升并发测试服务器数目上限，允许多选服务器并禁止自动连接，禁止自动连接的服务器灰色显示「禁止测速」，活动服务器绿色高亮显示";
+description="增加保存更新默认服务器列表的功能，改进启用tls并未指定sni字段时使用host或address指定的域名，增加直接导入单个服务器JSON配置功能，其他一些小改进";
 outputDir="/release/update/"
 }
